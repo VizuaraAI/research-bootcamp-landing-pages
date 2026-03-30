@@ -1,0 +1,45 @@
+@import "@vizuara/ui/styles/globals.css";
+@source "../../../packages/vizuara-ui/components";
+@source "../../../packages/vizuara-ui/utils";
+
+/* GenAI Theme: Violet + Blue */
+:root {
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #2563eb;
+  --accent: #2563eb;
+  --ring: #7c3aed;
+  --glow-opacity: 0.1;
+}
+
+.dark {
+  --primary: #a78bfa;
+  --primary-foreground: #000000;
+  --secondary: #60a5fa;
+  --accent: #60a5fa;
+  --ring: #a78bfa;
+  --glow-opacity: 0.18;
+}
+
+/* Override glow effects for violet */
+.glow-green {
+  box-shadow: 0 0 20px rgba(124, 58, 237, var(--glow-opacity)),
+    0 0 60px rgba(124, 58, 237, calc(var(--glow-opacity) / 3));
+}
+
+.glow-green-strong {
+  box-shadow: 0 0 30px rgba(124, 58, 237, calc(var(--glow-opacity) * 1.7)),
+    0 0 80px rgba(124, 58, 237, calc(var(--glow-opacity) * 0.7));
+}
+
+.hover-glow-green:hover {
+  box-shadow: 0 0 25px rgba(124, 58, 237, var(--glow-opacity)),
+    0 0 50px rgba(124, 58, 237, calc(var(--glow-opacity) / 2));
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
