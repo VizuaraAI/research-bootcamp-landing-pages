@@ -95,12 +95,6 @@ export const bootcampConfig: BootcampConfig = {
       { iconName: "Code2", text: "Julia Programming", color: "text-primary" },
       { iconName: "FlaskConical", text: "Research Projects", color: "text-secondary" },
     ],
-    stats: [
-      { value: "500+", label: "Students Trained" },
-      { value: "8+", label: "Hands-on Sessions" },
-      { value: "3", label: "MIT/Purdue PhDs" },
-      { value: "100%", label: "Research-Grade Content" },
-    ],
     ctaPrimary: { label: "Enroll Now", href: "#pricing" },
     ctaSecondary: { label: "Watch Intro", href: "#video" },
     universityLogos: [
