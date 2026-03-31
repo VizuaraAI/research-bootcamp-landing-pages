@@ -764,6 +764,30 @@ export const bootcampConfig: BootcampConfig = {
         thumbnail: "/papers/nanovlms.png",
         tags: ["VLMs", "Multimodal", "Efficiency"],
       },
+      {
+        title: "Bayesian Neural Ordinary Differential Equations",
+        authors:
+          "Raj Dandekar, Vaibhav Dixit, Mohamed Tarek, Aslan Garcia-Valadez, Chris Rackauckas",
+        venue: "Languages for Inference (LAF1)",
+        year: 2021,
+        abstract:
+          "Integrates Bayesian learning frameworks with Neural ODEs to robustly quantify uncertainty. Demonstrates probabilistic identification of model specification in partially-described dynamical systems using universal ordinary differential equations.",
+        arxivUrl: "https://arxiv.org/abs/2012.07244",
+        thumbnail: "/papers/cbeval.png",
+        tags: ["Neural Networks", "Bayesian ML", "Uncertainty"],
+      },
+      {
+        title:
+          "A Machine Learning Aided Global Diagnostic and Comparative Tool to Assess Effect of Quarantine Control in COVID-19 Spread",
+        authors:
+          "Raj Dandekar, Chris Rackauckas, George Barbastathis",
+        venue: "Cell Patterns",
+        year: 2020,
+        abstract:
+          "Developed a globally applicable diagnostic model by augmenting classical epidemiological models with a neural network module. All parameters were optimized via machine learning algorithms, creating a hybrid physics-ML approach to pandemic modeling.",
+        arxivUrl: "https://arxiv.org/abs/2003.14077",
+        tags: ["Neural Networks", "Applied ML", "Healthcare"],
+      },
     ],
   },
 
@@ -826,7 +850,7 @@ export const bootcampConfig: BootcampConfig = {
         features: [
           "Lifetime access to all videos, code files, and homework assignments",
         ],
-        href: "https://vizuara.ai/courses/student-plan",
+        href: "https://vizuara.ai/courses/genai-student-plan",
         cta: "Enroll Now",
         popular: false,
         variant: "secondary",
@@ -846,7 +870,7 @@ export const bootcampConfig: BootcampConfig = {
           "Publishing the research in conferences/journals",
           "How GenAI and LLMs can be integrated in industries",
         ],
-        href: "https://vizuara.ai/courses/llm-bootcamp-industry-professional-plan",
+        href: "https://vizuara.ai/courses/genai-industry-professional-plan",
         cta: "Enroll Now",
         popular: true,
         variant: "primary",

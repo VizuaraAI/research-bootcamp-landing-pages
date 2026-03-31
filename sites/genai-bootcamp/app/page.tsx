@@ -19,14 +19,14 @@ import {
   CTABanner,
   Footer,
 } from "@vizuara/ui";
+import GenAIFlowViz from "@vizuara/ui/components/visualizations/GenAIFlowViz";
 import { bootcampConfig, showcaseConfig, certificateConfig } from "@/data/bootcamp";
 
 export default function Home() {
   return (
     <main>
       <Navbar config={bootcampConfig.navbar} />
-      {/* TODO: Add a GenAI-themed visualization component and pass it as the visualization prop */}
-      <Hero config={bootcampConfig.hero} />
+      <Hero config={bootcampConfig.hero} visualization={<GenAIFlowViz />} />
       {bootcampConfig.video && (
         <VideoSection config={bootcampConfig.video} />
       )}
