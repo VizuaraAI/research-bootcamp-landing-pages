@@ -42,13 +42,20 @@ function CopyEmailButton({ email }: { email: string }) {
 
 export default function PricingSection({ config }: PricingSectionProps) {
   const hasEnterprise = !!config.enterprise;
-  const gridCols = hasEnterprise
-    ? config.plans.length + 1 <= 3
-      ? "lg:grid-cols-3"
-      : "lg:grid-cols-4"
-    : config.plans.length <= 3
-      ? "lg:grid-cols-3"
-      : "lg:grid-cols-4";
+  const totalCards = hasEnterprise ? config.plans.length + 1 : config.plans.length;
+  const gridCols = totalCards === 1
+    ? ""
+    : hasEnterprise
+      ? totalCards <= 3
+        ? "lg:grid-cols-3"
+        : "lg:grid-cols-4"
+      : config.plans.length <= 3
+        ? "lg:grid-cols-3"
+        : "lg:grid-cols-4";
+
+  const containerClass = totalCards === 1
+    ? "flex justify-center"
+    : `grid items-end gap-6 md:grid-cols-2 ${gridCols}`;
 
   return (
     <section id="pricing" className="relative py-24">
@@ -59,7 +66,7 @@ export default function PricingSection({ config }: PricingSectionProps) {
           subtitle={config.subtitle}
         />
 
-        <div className={`grid items-end gap-6 md:grid-cols-2 ${gridCols}`}>
+        <div className={containerClass}>
           {config.plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -68,6 +75,8 @@ export default function PricingSection({ config }: PricingSectionProps) {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className={`relative flex flex-col rounded-xl border p-6 ${
+                totalCards === 1 ? "w-full max-w-md" : ""
+              } ${
                 plan.popular
                   ? "border-primary bg-card glow-green-strong"
                   : "border-border bg-card"
