@@ -153,6 +153,7 @@ export default function CurriculumSection({ config }: CurriculumSectionProps) {
                             </div>
                           </div>
 
+                          {day.instructor && (
                           <p className={`mb-3 text-sm font-medium ${
                             isAmber
                               ? "text-amber-600"
@@ -162,6 +163,7 @@ export default function CurriculumSection({ config }: CurriculumSectionProps) {
                           }`}>
                             Led by {day.instructor}
                           </p>
+                          )}
 
                           <ul className="mb-4 space-y-2">
                             {day.topics.map((topic) => (
@@ -183,6 +185,7 @@ export default function CurriculumSection({ config }: CurriculumSectionProps) {
                             ))}
                           </ul>
 
+                          {day.exercise && (
                           <div
                             className={`rounded-lg border px-4 py-2.5 ${
                               isAmber
@@ -207,6 +210,7 @@ export default function CurriculumSection({ config }: CurriculumSectionProps) {
                               {day.exercise}
                             </span>
                           </div>
+                          )}
                         </motion.div>
                       );
                     })}
