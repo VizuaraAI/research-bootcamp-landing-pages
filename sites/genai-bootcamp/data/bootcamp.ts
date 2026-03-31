@@ -69,7 +69,6 @@ export const bootcampConfig: BootcampConfig = {
   navbar: {
     links: [
       { label: "Why GenAI", href: "#why" },
-      { label: "Diagrams", href: "#diagrams" },
       { label: "Curriculum", href: "#curriculum" },
       { label: "Research", href: "#research" },
       { label: "Instructors", href: "#instructors" },
