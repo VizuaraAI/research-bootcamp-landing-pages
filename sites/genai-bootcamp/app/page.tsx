@@ -13,7 +13,6 @@ import {
   ResearchPapersSection,
   ShowcaseSection,
   CertificateSection,
-  TestimonialsSection,
   PricingSection,
   FAQSection,
   CTABanner,
@@ -49,7 +48,6 @@ export default function Home() {
           viewAllLabel="View All Publications"
         />
       )}
-      <TestimonialsSection config={bootcampConfig.testimonials} />
       <PricingSection config={bootcampConfig.pricing} />
       <FAQSection config={bootcampConfig.faq} />
       <CTABanner config={bootcampConfig.cta} />
