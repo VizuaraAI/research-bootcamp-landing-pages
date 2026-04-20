@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 
 /*
- * Sophisticated neural-network hero visualization.
+ * Neural-network hero visualization.
  * Shows a 5-layer network with:
  *   - activation function labels (ReLU, Sigmoid, Softmax)
  *   - a skip / residual connection
  *   - dropout indicators (crossed-out nodes)
  *   - gradient-flow arrows on the backprop side
- *   - loss surface contour at the bottom
  *   - floating math annotations
  */
 
@@ -25,14 +24,14 @@ const layerSpacing = 82;
 const nodeSpacing = 44;
 const startX = 32;
 const vizWidth = 440;
-const vizHeight = 420;
+const vizHeight = 380;
 
 // Nodes that are "dropped out" (layerIdx, nodeIdx)
 const droppedOut: Set<string> = new Set(["1-4", "2-1", "3-2"]);
 
 function ny(count: number, idx: number): number {
   const total = (count - 1) * nodeSpacing;
-  return (vizHeight - 80 - total) / 2 + idx * nodeSpacing + 10;
+  return (vizHeight - 80 - total) / 2 + idx * nodeSpacing + 20;
 }
 function nx(layerIdx: number): number {
   return startX + layerIdx * layerSpacing;
@@ -134,7 +133,7 @@ export default function NeuralNetViz() {
       />
       <text
         x={(nx(1) + nx(3)) / 2}
-        y={ny(layers[1].nodes, 0) - 50}
+        y={ny(layers[1].nodes, 0) - 54}
         textAnchor="middle"
         fontSize={8}
         fontFamily="monospace"
@@ -142,32 +141,6 @@ export default function NeuralNetViz() {
         opacity={0.7}
       >
         skip connection
-      </text>
-
-      {/* ===== GRADIENT FLOW ARROWS (backprop, bottom) ===== */}
-      {[4, 3, 2, 1].map((l, i) => (
-        <motion.line
-          key={`grad-${l}`}
-          x1={nx(l)} y1={ny(layers[l].nodes, layers[l].nodes - 1) + 22}
-          x2={nx(l - 1)} y2={ny(layers[l - 1].nodes, layers[l - 1].nodes - 1) + 22}
-          stroke="url(#nn-grad)"
-          strokeWidth={1.2}
-          strokeDasharray="4 3"
-          markerEnd="url(#arrow-grad)"
-          animate={{ strokeDashoffset: [0, 14] }}
-          transition={{ duration: 1.5, delay: i * 0.4, repeat: Infinity, ease: "linear" }}
-        />
-      ))}
-      <text
-        x={(nx(1) + nx(3)) / 2}
-        y={ny(layers[2].nodes, layers[2].nodes - 1) + 34}
-        textAnchor="middle"
-        fontSize={7.5}
-        fontFamily="monospace"
-        fill="#f97316"
-        opacity={0.55}
-      >
-        gradient flow  dL/dW
       </text>
 
       {/* ===== NODES ===== */}
@@ -180,12 +153,9 @@ export default function NeuralNetViz() {
 
           return (
             <g key={`n-${lIdx}-${nIdx}`}>
-              {/* Glow behind node */}
               {!isDropped && (
                 <circle cx={x} cy={y} r={14} fill="url(#nn-glow)" filter="url(#nn-blur)" />
               )}
-
-              {/* Node circle */}
               <motion.circle
                 cx={x} cy={y}
                 r={isOutput ? 10 : 8}
@@ -197,8 +167,6 @@ export default function NeuralNetViz() {
                 animate={isDropped ? {} : { scale: [1, 1.1, 1], strokeOpacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 2.8, delay: lIdx * 0.4 + nIdx * 0.12, repeat: Infinity, ease: "easeInOut" }}
               />
-
-              {/* Inner activation dot */}
               {!isDropped && (
                 <motion.circle
                   cx={x} cy={y} r={3.5}
@@ -207,8 +175,6 @@ export default function NeuralNetViz() {
                   transition={{ duration: 2.2, delay: lIdx * 0.5 + nIdx * 0.15, repeat: Infinity, ease: "easeInOut" }}
                 />
               )}
-
-              {/* Dropout cross */}
               {isDropped && (
                 <g opacity={0.4}>
                   <line x1={x - 5} y1={y - 5} x2={x + 5} y2={y + 5} stroke="#ef4444" strokeWidth={1.5} />
@@ -224,7 +190,7 @@ export default function NeuralNetViz() {
       {layers.slice(1).map((layer, i) => {
         const lIdx = i + 1;
         const midX = (nx(lIdx - 1) + nx(lIdx)) / 2;
-        const topY = ny(layer.nodes, 0) - 10;
+        const topY = ny(layer.nodes, 0) - 6;
         if (!layer.activation) return null;
         return (
           <motion.g
@@ -234,18 +200,19 @@ export default function NeuralNetViz() {
             transition={{ delay: 1 + i * 0.2 }}
           >
             <rect
-              x={midX - 16} y={topY - 9}
-              width={32} height={14}
-              rx={3}
+              x={midX - 18} y={topY - 10}
+              width={36} height={16}
+              rx={4}
               fill="var(--background)"
               stroke="var(--primary)"
               strokeWidth={0.6}
               opacity={0.7}
             />
             <text
-              x={midX} y={topY}
+              x={midX} y={topY + 2}
               textAnchor="middle"
-              fontSize={7}
+              dominantBaseline="middle"
+              fontSize={7.5}
               fontFamily="monospace"
               fontWeight="600"
               className="fill-primary"
@@ -258,28 +225,24 @@ export default function NeuralNetViz() {
       })}
 
       {/* ===== DROPOUT LABEL ===== */}
-      <motion.g
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}
+      <motion.text
+        initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 2 }}
+        x={nx(1) + (nx(2) - nx(1)) / 2}
+        y={ny(layers[2].nodes, layers[2].nodes - 1) + 18}
+        textAnchor="middle"
+        fontSize={7}
+        fontFamily="monospace"
+        fill="#ef4444"
       >
-        <text
-          x={nx(1) + (nx(2) - nx(1)) / 2}
-          y={ny(layers[2].nodes, layers[2].nodes - 1) + 14}
-          textAnchor="middle"
-          fontSize={7}
-          fontFamily="monospace"
-          fill="#ef4444"
-          opacity={0.5}
-        >
-          dropout p=0.2
-        </text>
-      </motion.g>
+        dropout p=0.2
+      </motion.text>
 
       {/* ===== LAYER LABELS ===== */}
       {layers.map((layer, lIdx) => (
         <text
           key={`lbl-${lIdx}`}
           x={nx(lIdx)}
-          y={vizHeight - 16}
+          y={vizHeight - 10}
           textAnchor="middle"
           className="fill-muted-foreground"
           fontSize={8}
@@ -287,71 +250,6 @@ export default function NeuralNetViz() {
         >
           {layer.label}
         </text>
-      ))}
-
-      {/* ===== LOSS SURFACE CONTOUR (bottom-right) ===== */}
-      <motion.g
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }}
-      >
-        {[28, 22, 16, 10].map((r, i) => (
-          <motion.ellipse
-            key={`contour-${i}`}
-            cx={vizWidth - 42}
-            cy={vizHeight - 52}
-            rx={r * 1.3}
-            ry={r}
-            fill="none"
-            stroke="var(--primary)"
-            strokeWidth={0.6}
-            opacity={0.12 + i * 0.06}
-            animate={{ opacity: [0.1 + i * 0.04, 0.2 + i * 0.06, 0.1 + i * 0.04] }}
-            transition={{ duration: 3, delay: i * 0.3, repeat: Infinity }}
-          />
-        ))}
-        {/* Gradient descent dot on loss surface */}
-        <motion.circle
-          r={2.5}
-          fill="#f97316"
-          animate={{
-            cx: [vizWidth - 60, vizWidth - 48, vizWidth - 43, vizWidth - 42],
-            cy: [vizHeight - 68, vizHeight - 58, vizHeight - 53, vizHeight - 52],
-            opacity: [0.8, 0.9, 1, 0.8],
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <text
-          x={vizWidth - 42}
-          y={vizHeight - 22}
-          textAnchor="middle"
-          fontSize={7}
-          fontFamily="monospace"
-          className="fill-muted-foreground"
-          opacity={0.5}
-        >
-          loss surface
-        </text>
-      </motion.g>
-
-      {/* ===== FLOATING MATH ANNOTATIONS ===== */}
-      {[
-        { text: "W = W - lr * dW", x: 8, y: 6, d: 0 },
-        { text: "z = Wx + b", x: 72, y: 4, d: 0.6 },
-        { text: "a = max(0, z)", x: 5, y: 94, d: 1.2 },
-      ].map((m, i) => (
-        <motion.text
-          key={`math-${i}`}
-          x={`${m.x}%`}
-          y={`${m.y}%`}
-          fontSize={7}
-          fontFamily="monospace"
-          fontWeight="500"
-          className="fill-primary"
-          opacity={0.18}
-          animate={{ opacity: [0.12, 0.3, 0.12], y: [`${m.y}%`, `${m.y - 1}%`, `${m.y}%`] }}
-          transition={{ duration: 5, delay: m.d, repeat: Infinity }}
-        >
-          {m.text}
-        </motion.text>
       ))}
     </svg>
   );

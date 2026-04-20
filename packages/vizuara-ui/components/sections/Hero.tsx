@@ -140,23 +140,21 @@ export default function Hero({ config, visualization }: HeroProps) {
           )}
         </div>
 
-        {config.stats && config.stats.length > 0 && (
-          <motion.div
-            className="mx-auto mt-20 grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            {config.stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl font-bold text-primary">{stat.value}</div>
-                <div className="mt-1 text-sm text-muted-foreground">
-                  {stat.label}
-                </div>
+        <motion.div
+          className="mx-auto mt-20 grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          {config.stats.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-4xl font-bold text-primary">{stat.value}</div>
+              <div className="mt-1 text-sm text-muted-foreground">
+                {stat.label}
               </div>
-            ))}
-          </motion.div>
-        )}
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

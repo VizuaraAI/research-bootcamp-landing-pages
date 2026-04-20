@@ -1,5 +1,6 @@
 import type { BootcampConfig } from "@vizuara/ui";
 import type { ShowcaseSectionConfig, CertificateSectionConfig } from "@vizuara/ui";
+import type { VenuesMarqueeConfig, MarketStatsSectionConfig, NextCohortPopupConfig, ContactSectionConfig } from "@vizuara/ui";
 import {
   INSTRUCTOR_SREEDATH,
   INSTRUCTOR_RAJ,
@@ -89,6 +90,12 @@ export const bootcampConfig: BootcampConfig = {
       { iconName: "Clock", text: "30 Topics", color: "text-secondary" },
       { iconName: "Code2", text: "Python", color: "text-primary" },
       { iconName: "Brain", text: "Research Projects", color: "text-secondary" },
+    ],
+    stats: [
+      { value: "85+", label: "Students Trained" },
+      { value: "15+", label: "Hands-on Sessions" },
+      { value: "3", label: "MIT/Purdue PhDs" },
+      { value: "100%", label: "Research-Grade Content" },
     ],
     ctaPrimary: { label: "Enroll Now", href: "#pricing" },
     ctaSecondary: { label: "Watch Intro", href: "#video" },
@@ -663,112 +670,222 @@ export const bootcampConfig: BootcampConfig = {
 
   researchPapers: {
     label: "Our Research",
-    title: "Sample Papers From Our Research",
+    title: "Recent Papers From Our Research",
     subtitle:
-      "A selected few papers from our research over the past years. Students in the Industry Professional plan work on similar projects aimed at publication.",
+      "A few recent GenAI and LLM papers from our research over the past years. Students in the Industry Professional plan work on similar projects aimed at publication.",
     papers: [
       {
-        title: "Latent Multi-Head Attention for Small Language Models",
+        title:
+          "Beyond Passive Viewing: A Hybrid Learning Platform Augmenting Video Lectures with Conversational AI",
         authors:
-          "Vizuara AI Labs Research Team",
+          "Mohammed Abraar, Raj Dandekar, Rajat Dandekar, Sreedath Panat",
+        venue: "TeachNLP Workshop",
+        year: 2026,
+        abstract:
+          "Proposes a hybrid platform combining video lectures with conversational AI tutors. In a controlled study with 58 participants, AI-augmented instruction yielded 8.3 points higher post-test scores and 71.1% longer engagement duration compared to standard video.",
+        thumbnail: "/papers/teachnlp-ai-tutor.png",
+        tags: ["AI Education", "NLP", "Conversational AI"],
+      },
+      {
+        title:
+          "Multilingual Evaluation of Human vs. AI Text Classification with Zero-Shot Analysis of Contemporary LLM Architectures",
+        authors:
+          "Pranamya Nilesh Deshpande, Raj Dandekar, Rajat Dandekar, Sreedath Panat",
+        venue: "LM4UC Workshop",
+        year: 2026,
+        abstract:
+          "Compares traditional ML with transformer models for human vs AI text detection across English, Hindi, and Spanish. Finds that classical models like XGBoost outperform transformers in cross-lingual scenarios, while commercial LLMs are detected consistently but smaller open-source models go undetected.",
+        thumbnail: "/papers/multilingual-detection.png",
+        tags: ["NLP", "Multilingual", "AI Detection"],
+      },
+      {
+        title:
+          "Regional-TinyStories: A Small Language Model Framework for Evaluating Language Learning, Tokenizers, and Datasets",
+        authors:
+          "Nirvan Patil, Malhar Abhay Inamdar, Agnivo Gosai, Guruprasad Pathak, Anish Joshi, Anish Joshirao, Raj Dandekar, Rajat Dandekar, Sreedath Panat",
+        venue: "AACL-IJCNLP",
+        year: 2025,
+        abstract:
+          "Extends TinyStories to Hindi, Marathi, and Bangla with 2 million stories per language and 20+ trained models. Reveals that Indic-specific tokenizers outperform generic ones and that dataset semantic quality strongly governs downstream generation quality.",
+        thumbnail: "/papers/regional-tinystories.png",
+        tags: ["SLMs", "Multilingual", "Low-Resource NLP"],
+      },
+      {
+        title:
+          "Simulating Misinformation Propagation in Social Networks using Large Language Models",
+        authors:
+          "Raj Gaurav Maurya, Vaibhav Shukla, Raj Abhijit Dandekar, Rajat Dandekar, Sreedath Panat",
+        venue: "ACM CIKM",
+        year: 2025,
+        abstract:
+          "Uses LLM-based synthetic agents with distinct personas to investigate how false claims spread through networks. Demonstrates that identity- and ideology-based personas act as misinformation accelerators, while expert personas maintain factual consistency.",
+        arxivUrl: "https://arxiv.org/abs/2511.10384",
+        thumbnail: "/papers/misinfo-propagation.png",
+        badge: "Outstanding Paper Award at ACM CIKM 25",
+        tags: ["LLMs", "Misinformation", "Social Networks"],
+      },
+      {
+        title:
+          "NanoVLMs: How Small Can We Go and Still Make Coherent Vision Language Models?",
+        authors:
+          "Mukund Agarwalla, Himanshu Kumar, Raj Dandekar, Rajat Dandekar, Sreedath Panat",
+        venue: "arXiv",
+        year: 2025,
+        abstract:
+          "Investigates the minimum size threshold for vision-language models while preserving text generation quality. Introduces ShortDesc and LongDesc datasets and trains VLMs up to 10 times smaller than state-of-the-art small VLMs while maintaining coherent multimodal reasoning.",
+        arxivUrl: "https://arxiv.org/abs/2502.07838",
+        thumbnail: "/papers/nanovlms-new.png",
+        tags: ["VLMs", "Multimodal", "Efficiency"],
+      },
+      {
+        title: "Latent Multi-Head Attention for Small Language Models",
+        authors: "Vizuara AI Labs Research Team",
         venue: "arXiv",
         year: 2025,
         abstract:
           "Investigates latent multi-head attention mechanisms for Small Language Models, enabling efficient inference while maintaining strong performance on downstream tasks.",
         arxivUrl: "https://arxiv.org/abs/2501.17781",
-        thumbnail: "/papers/latent-attention.png",
+        thumbnail: "/papers/latent-attention-new.png",
         tags: ["SLMs", "Attention", "Efficiency"],
       },
       {
         title: "Decoders Laugh as Loud as Encoders",
         authors:
-          "Vizuara AI Labs Research Team",
+          "Eli Borodach, Raj Dandekar, Rajat Dandekar, Sreedath Panat",
         venue: "arXiv",
         year: 2025,
         abstract:
-          "A comparative study of encoder and decoder architectures for text classification tasks, demonstrating that modern decoder-only models can match encoder performance with appropriate fine-tuning strategies.",
-        thumbnail: "/papers/decoders.png",
-        tags: ["LLMs", "Classification", "Architecture"],
-      },
-      {
-        title: "NanoVLMs: How Small Can We Go and Still Make Coherent Vision Language Models?",
-        authors:
-          "Vizuara AI Labs Research Team",
-        venue: "arXiv",
-        year: 2025,
-        abstract:
-          "Explores the minimum viable scale for Vision Language Models, demonstrating that coherent multimodal understanding can be achieved at significantly smaller parameter counts than previously assumed.",
-        thumbnail: "/papers/nanovlms.png",
-        tags: ["VLMs", "Multimodal", "Efficiency"],
-      },
-      {
-        title: "Bayesian Neural Ordinary Differential Equations",
-        authors:
-          "Raj Dandekar, Vaibhav Dixit, Mohamed Tarek, Aslan Garcia-Valadez, Chris Rackauckas",
-        venue: "Languages for Inference (LAF1)",
-        year: 2021,
-        abstract:
-          "Integrates Bayesian learning frameworks with Neural ODEs to robustly quantify uncertainty. Demonstrates probabilistic identification of model specification in partially-described dynamical systems using universal ordinary differential equations.",
-        arxivUrl: "https://arxiv.org/abs/2012.07244",
-        thumbnail: "/papers/cbeval.png",
-        tags: ["Neural Networks", "Bayesian ML", "Uncertainty"],
+          "Investigates whether LLMs genuinely comprehend humor. A fine-tuned decoder (GPT-4o) achieved a Mean F1-macro score of 0.85, matching the best fine-tuned encoder (RoBERTa at 0.86), demonstrating comparable performance between decoder and encoder approaches for humor understanding.",
+        arxivUrl: "https://arxiv.org/abs/2509.04779",
+        thumbnail: "/papers/decoders-new.png",
+        tags: ["LLMs", "Classification", "Humor Detection"],
       },
       {
         title:
-          "A Machine Learning Aided Global Diagnostic and Comparative Tool to Assess Effect of Quarantine Control in COVID-19 Spread",
+          "Unifying Mixture of Experts and Multi-Head Latent Attention for Efficient Language Models",
         authors:
-          "Raj Dandekar, Chris Rackauckas, George Barbastathis",
-        venue: "Cell Patterns",
-        year: 2020,
+          "Sushant Mehta, Raj Dandekar, Rajat Dandekar, Sreedath Panat",
+        venue: "BabyLM Workshop",
+        year: 2025,
         abstract:
-          "Developed a globally applicable diagnostic model by augmenting classical epidemiological models with a neural network module. All parameters were optimized via machine learning algorithms, creating a hybrid physics-ML approach to pandemic modeling.",
-        arxivUrl: "https://arxiv.org/abs/2003.14077",
-        tags: ["Neural Networks", "Applied ML", "Healthcare"],
+          "Introduces MoE-MLA-RoPE combining Mixture of Experts with Multi-Head Latent Attention. Achieves 68% KV cache memory reduction and 3.2x inference speedup while improving validation loss by 6.9% using 42% fewer active parameters per forward pass.",
+        thumbnail: "/papers/moe-mla.png",
+        tags: ["LLMs", "MoE", "Efficient LLMs"],
+      },
+      {
+        title:
+          "Muon: Training and Trade-offs with Latent Attention and MoE",
+        authors:
+          "Sushant Mehta, Raj Dandekar, Rajat Dandekar, Sreedath Panat",
+        venue: "arXiv",
+        year: 2025,
+        abstract:
+          "Investigates the Muon optimizer for transformer training at medium scales (30M-200M parameters). Muon reaches the target loss with 48-52% of the training compute of AdamW while maintaining or improving final perplexity, with 68% memory reduction and 3.2x inference speedup.",
+        arxivUrl: "https://arxiv.org/abs/2509.24406",
+        thumbnail: "/papers/muon-optimizer.png",
+        tags: ["LLMs", "Optimization", "Transformers"],
       },
     ],
   },
 
   testimonials: {
-    label: "Student Testimonials",
-    title: "What Our Students Say",
+    label: "From the Community",
+    title: "Stories from our researchers",
     subtitle:
-      "Hear from researchers, engineers, and professionals who have transformed their careers with Generative AI expertise.",
+      "Milestones, acceptances, and moments shared by Vizuara students and alumni on LinkedIn.",
     items: [
       {
-        quote:
-          "This bootcamp took me from zero LLM knowledge to building production-grade RAG systems in just six weeks. The hands-on projects with real ArXiv data made every concept stick.",
-        name: "Ananya Mehta",
-        role: "ML Engineer, Tech Startup",
+        name: "Raj Gaurav Maurya",
+        role: "Incoming Student at Cambridge University",
+        fullPost: `Outstanding Paper Award | ACM CIKM 2025 (Seoul)
+
+Thrilled to share that our work on simulating misinformation propagation with LLMs received the Outstanding Paper Award at CIKM 2025!
+
+After months of iteration and 31,500+ API calls, we pushed persona-based LLM agents to their limits.
+
+What we built:
+A novel Auditor-Node framework with persona-conditioned LLM agents
+630 sequential rewrites to simulate real-world information decay
+Claim-level factual tracking via a QA-based auditor
+
+Key findings:
+Identity-driven personas distort information 400%+ faster
+Mixed persona interactions escalate 85% of cases to propaganda-level changes
+Expert personas preserve 90%+ factual stability
+
+This shows LLMs are not just generators, they are tools to understand human behavior at scale.
+
+A huge thank you to the Technical University of Munich (TUM) for the freedom to explore bold ideas, and special thanks to Juergen Pfeffer for fostering a culture of cutting-edge research. Grateful to Dr. Sreedath Panat (for making research accessible across India), Vaibhav Shukla (soon-to-be Dr. Vaibhav!), Dr. Raj, Dr. Rajat, and my incredible mentors at TUM for their constant guidance and support.`,
+        linkedinUrl:
+          "https://www.linkedin.com/posts/rajgm29_outstanding-paper-award-acm-cikm-2025-activity-7405923726657310721-i_ei/",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:activity:7405923726657310721",
       },
       {
-        quote:
-          "The LangChain and agents section was exactly what I needed. I now build autonomous AI tools for my team, and the prompt engineering techniques have saved us thousands in API costs.",
-        name: "Vikram Patel",
-        role: "Senior Software Engineer, Enterprise AI",
+        name: "Dr. Sreedath Panat",
+        role: "Co-founder, Vizuara AI Labs · MIT PhD",
+        fullPost: `6 Papers Accepted Across NeurIPS, ICCV, and EMNLP Workshops 2025
+
+Vizuara's Research Wing has achieved a significant milestone with six workshop paper acceptances across major AI conferences in 2025.
+
+1. EARS-UDE: Evaluating Auditory Response in Sensory Overload with Universal Differential Equations (AI for Science, NeurIPS 2025)
+2. Physics-Informed Learning Near Critical Transitions (AI for Science, NeurIPS 2025)
+3. Scientific Machine Learning for Symbolic Recovery of Relativistic Effects in Black Hole Orbits (AI for Science, NeurIPS 2025)
+4. PI-NAV: Physics-Informed Universal Differential Equations for Nanorobot Navigation (ML for Physical Sciences, NeurIPS 2025)
+5. VLMs Display a Strong Gender Bias (ICCV 2025, 2 workshops)
+6. Unifying Mixture of Experts and Multi-Head Latent Attention for Efficient Language Models (EMNLP 2025 workshop)
+
+These achievements reflect collaboration between researchers and bootcamp participants, where theory meets real-world application and produces publishable contributions.`,
+        linkedinUrl:
+          "https://www.linkedin.com/posts/sreedath-panat_6-papers-accepted-across-neurips-iccv-and-activity-7376554466747191296-2o9O/",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:activity:7376554466747191296",
       },
       {
-        quote:
-          "As a PhD student in NLP, I found the RAG and multimodal sections research-grade. The instructors bring genuine MIT-level depth, and the research project guidance led to my first paper submission.",
-        name: "Sarah Chen",
-        role: "PhD Student, Computational Linguistics",
+        name: "Pranav Ramanathan",
+        role: "Incoming Intern, Amazon · Queen Mary University of London",
+        fullPost: `This summer, I set out to see if modern AI could crack the No-Three-in-Line problem, a combinatorial challenge that's remained open since 1917.
+
+Today, I'm excited to share that our research is now live on arXiv.
+
+We tested three approaches head-to-head. Integer Linear Programming (Gurobi) achieved provably optimal solutions up to 19x19. PatternBoost, using transformer-based pattern learning, matched the 2n upper bound up to 14x14 despite never seeing optimal examples during training. Reinforcement learning (PPO) cracked 10x10 grids perfectly but stumbled at 11x11.
+
+The team at Vizuara Technologies Private Limited: PRATHAMESH JOSHI, Raj Abhijit Dandekar, Rajat Dandekar, Sreedath Panat, for their collaboration and expertise in Scientific Machine Learning.
+
+Paper: https://lnkd.in/e8GKqGBs`,
+        linkedinUrl:
+          "https://www.linkedin.com/posts/pranav-ramanathan_machinelearning-reinforcementlearning-transformers-ugcPost-7409888251085373440-Dnv-",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7409888251085373440",
       },
       {
-        quote:
-          "The fine-tuning sessions on BERT and Flan-T5 gave me practical skills I use daily. The bootcamp bridges the gap between reading papers and actually implementing them.",
-        name: "Rahul Krishnan",
-        role: "Data Scientist, Financial Services",
+        name: "Miheer Salunke",
+        role: "Principal Software Engineer at Red Hat · Australia",
+        fullPost: `I just had a very nice spotlight poster session for our research paper at AI For Science workshop at NeurIPS 2025. People were amazed to see our innovation where training some parts of the mathematical equations we curated referring exisiting literature can evaluate individual specific sensory parameters and thereby predict auditory overload of the individual and how the response calculated matched with the ground truth.
+
+Our Universal Differential Equation model used very low resources.
+For example: 5mb of memory was used throughout the training which allows us this model to be used on wearables.
+
+I felt very happy when people called this as an interesting innovation.
+
+Special Thanks to Raj Abhijit Dandekar and PRATHAMESH JOSHI for the guidance and review of the paper.`,
+        linkedinUrl:
+          "https://www.linkedin.com/posts/miheer-salunke-377a9428_i-just-had-a-very-nice-spotlight-poster-session-activity-7403554568787406848-az77",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:activity:7403554568787406848",
       },
       {
-        quote:
-          "I attended the GenAI bootcamp to understand LLMs for product decisions. The Vision Transformers and CLIP sessions opened my eyes to multimodal possibilities we are now building into our platform.",
-        name: "Lisa Park",
-        role: "Product Manager, AI Platform",
-      },
-      {
-        quote:
-          "The semantic search and evaluation metrics sections were exactly what our team needed. We implemented the RAG architecture from the bootcamp and improved our search relevance by 40%.",
-        name: "Deepak Sharma",
-        role: "Lead Engineer, Search Infrastructure",
+        name: "Karishma Battina",
+        role: "Senior DevOps Engineer · Commerce, United States",
+        fullPost: `I'm happy to share that I'll be presenting my research on Physics-Informed Neural Networks (PINNs) for Ocean Pollutant Modeling at JuliaCon 2026, where researchers and developers collaborate to push Scientific Computing forward!
+
+Using Julia's powerful ecosystem, I developed a PINN-based framework to solve the 2D advection-diffusion equation, enabling fast and accurate predictions of oceanic pollution hotspots.
+
+Huge thanks to my mentors, PRATHAMESH JOSHI, Raj Abhijit Dandekar, Rajat Dandekar, Sreedath Panat, Vizuara Technologies Private Limited team, who have been instrumental in shaping this research.`,
+        linkedinUrl:
+          "https://www.linkedin.com/posts/karishma-battina-071589ab_physics-informed-neural-network-for-ocean-activity-7338693187625959427-nbrH",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:activity:7338693187625959427",
       },
     ],
   },
@@ -860,6 +977,16 @@ export const bootcampConfig: BootcampConfig = {
         answer:
           "We do not offer refunds. Please review the curriculum, watch the free introduction video, and explore the Student Plan before purchasing a paid plan to ensure the bootcamp is right for you.",
       },
+      {
+        question: "Does Vizuara cover conference registration or journal publication fees?",
+        answer:
+          "No. Vizuara does not cover conference registration fees or journal publication charges. If a participant chooses to attend a conference in person or publish in an open-access journal, the participant is responsible for bearing these costs themselves.",
+      },
+      {
+        question: "Does the bootcamp cover computational costs?",
+        answer:
+          "No. Compute costs are not included in the bootcamp fee. We recommend participants use free resources such as Google Colab or Kaggle free GPUs. If a participant's research project requires additional compute, they are free to switch to a paid platform of their choice, but the associated cost must be borne by the participant.",
+      },
     ],
   },
 
@@ -876,7 +1003,7 @@ export const bootcampConfig: BootcampConfig = {
   footer: {
     tagline:
       "Vizuara AI Labs: Making AI accessible through research-grade education. Founded by MIT and Purdue AI PhDs.",
-    email: "sreedath@vizuara.ai",
+    email: "research@vizuara.com",
     socialLinks: [
       {
         iconName: "Linkedin",
@@ -890,9 +1017,94 @@ export const bootcampConfig: BootcampConfig = {
       },
       {
         iconName: "Mail",
-        href: "mailto:sreedath@vizuara.ai",
+        href: "mailto:research@vizuara.com",
         label: "Email",
       },
     ],
   },
+};
+
+export const venuesConfig: VenuesMarqueeConfig = {
+  label: "Accepted Venues",
+  title: "Where Our Researchers Publish & Present",
+  subtitle:
+    "Research from our cohorts has been accepted, presented, and archived across leading venues in machine learning, scientific computing, and applied AI.",
+  venues: [
+    { name: "NeurIPS", logo: "/venues/neurips.png" },
+    { name: "ICLR", logo: "/venues/iclr.png" },
+    { name: "AAAI", logo: "/venues/aaai.png" },
+    { name: "ACM", logo: "/venues/acm.png" },
+    { name: "JuliaCon", logo: "/venues/juliacon.png" },
+    { name: "IEEE eScience", logo: "/venues/escience.png" },
+    { name: "EGU General Assembly", logo: "/venues/egu.png" },
+    { name: "FastML", logo: "/venues/fastml.png" },
+    { name: "MIT URTC", logo: "/venues/mit-urtc.png" },
+    { name: "arXiv", logo: "/venues/arxiv.png" },
+    { name: "EMNLP", logo: "/venues/emnlp.png" },
+  ],
+};
+
+export const marketStatsConfig: MarketStatsSectionConfig = {
+  label: "The GenAI Boom",
+  title: "Generative AI Is Moving From Research to Infrastructure",
+  subtitle:
+    "Large Language Models and GenAI are shifting from academic papers to foundational infrastructure for every industry. Here is why the 2024-2026 window matters.",
+  items: [
+    {
+      iconName: "TrendingUp",
+      value: "$280B+",
+      description:
+        "Projected ML market by 2030, up from ~$55-75B in 2024 (CAGR above 30%), with GenAI emerging as a key industrial segment.",
+      source: "Market Research",
+      sourceHref: "https://grandviewresearch.com/industry-analysis/machine-learning-market",
+    },
+    {
+      iconName: "Zap",
+      value: "ChatGPT + LangChain",
+      description:
+        "OpenAI's ChatGPT and LangChain have become the standard infrastructure for building LLM-powered applications across industries.",
+      source: "OpenAI",
+      sourceHref: "https://openai.com/chatgpt",
+    },
+    {
+      iconName: "Database",
+      value: "RAG is the New Standard",
+      description:
+        "Retrieval-Augmented Generation has become the default architecture for enterprise AI, combining LLMs with domain-specific knowledge bases.",
+      source: "RAG Architecture",
+      sourceHref: "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+    },
+    {
+      iconName: "Building2",
+      value: "Jobs at High-Tech Companies",
+      description:
+        "Companies like Google, Meta, and Amazon have dedicated GenAI divisions, and firms across industries are actively hiring LLM and prompt engineering specialists.",
+      source: "LinkedIn GenAI Jobs",
+      sourceHref: "https://www.linkedin.com/jobs/generative-ai-jobs/",
+    },
+  ],
+};
+
+export const contactConfig: ContactSectionConfig = {
+  heading: "Have more queries?",
+  subtitle:
+    "Reach out to our team on email for any questions about the bootcamp, curriculum, or application process.",
+  email: "research@vizuara.com",
+  leadScientist: {
+    name: "Prathamesh Joshi",
+    title: "Lead AI Scientist, Vizuara AI Labs",
+    intro:
+      "If the email discussion goes well and we find the candidate genuinely interested in research, we also provide a 1-on-1 15-minute talk with our Lead AI Scientist, Prathamesh Joshi.",
+    bio: "Prathamesh Joshi is a Lead AI Scientist at Vizuara AI Labs, with prior experience at the Max Planck Institute, Germany. His expertise spans Generative AI and Scientific Machine Learning, with a strong publication record across ICLR Workshops, IEEE conferences, and other top venues. He has also mentored students through intensive bootcamps, guiding them toward publications at NeurIPS Workshops, ICLR, JuliaCon, and AAAI Workshops.",
+    photo: "/team/prathamesh-joshi.png",
+  },
+};
+
+export const nextCohortConfig: NextCohortPopupConfig = {
+  startDate: "2026-04-27",
+  cadenceDays: 15,
+  message: "Join the next batch of the GenAI Research Bootcamp",
+  ctaLabel: "Enroll Now",
+  ctaHref: "https://genai-research.vizuara.ai/#pricing",
+  delayMs: 2500,
 };
