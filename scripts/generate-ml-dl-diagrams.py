@@ -2,7 +2,8 @@ import asyncio
 import os
 import shutil
 
-os.environ["GEMINI_API_KEY"] = "***REMOVED***"
+if not os.environ.get("GEMINI_API_KEY"):
+    raise RuntimeError("GEMINI_API_KEY not set. Add it to .env at the repo root.")
 if "GOOGLE_API_KEY" in os.environ:
     del os.environ["GOOGLE_API_KEY"]
 

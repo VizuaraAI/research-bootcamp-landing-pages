@@ -8,7 +8,9 @@ import os
 from google import genai
 from google.genai import types
 
-API_KEY = os.environ.get("GEMINI_API_KEY", "***REMOVED***")
+API_KEY = os.environ.get("GEMINI_API_KEY")
+if not API_KEY:
+    raise RuntimeError("GEMINI_API_KEY not set. Add it to .env at the repo root.")
 OUTPUT_DIR = os.path.join(
     os.path.dirname(__file__), "..", "sites", "courses", "public", "thumbnails"
 )

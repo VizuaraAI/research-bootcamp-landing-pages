@@ -16,7 +16,9 @@ from pathlib import Path
 from google import genai
 from google.genai import types
 
-API_KEY = os.environ.get("GEMINI_API_KEY", "***REMOVED***")
+API_KEY = os.environ.get("GEMINI_API_KEY")
+if not API_KEY:
+    raise RuntimeError("GEMINI_API_KEY not set. Add it to .env at the repo root.")
 BASE_DIR = Path(__file__).parent.parent / "sites" / "courses" / "public" / "thumbnails"
 COURSE_DIR = BASE_DIR / "courses"
 BUNDLE_DIR = BASE_DIR / "bundles"

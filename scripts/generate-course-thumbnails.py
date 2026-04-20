@@ -2,7 +2,8 @@ import asyncio
 import os
 import shutil
 
-os.environ["GOOGLE_API_KEY"] = "***REMOVED***"
+if not os.environ.get("GOOGLE_API_KEY"):
+    raise RuntimeError("GOOGLE_API_KEY not set. Add it to .env at the repo root.")
 
 from paperbanana import PaperBananaPipeline, GenerationInput
 from paperbanana.core.config import Settings
