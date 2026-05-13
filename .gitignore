@@ -5,7 +5,9 @@ build/
 *.tsbuildinfo
 .env
 .env.local
+.eval
 .DS_Store
 *.log
 shared-assets/paperbanana-gen/*/run_*/
 .vercel
+scripts/__pycache__/
